@@ -1,0 +1,17 @@
+# Whitelist for LaTeX
+
+# Ignore everything
+*
+
+# Allow CI/CD configs
+!/.gitignore
+!/Makefile
+
+# Allow source code...
+!*.tex
+
+!README.md
+!LICENSE
+
+# ...also in subdirectories
+!*/
