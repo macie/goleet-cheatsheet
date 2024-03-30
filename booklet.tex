@@ -1,6 +1,6 @@
 \documentclass[10pt]{report}
 
-\usepackage[a5paper,top=2cm,bottom=2.5cm,inner=2cm,outer=2.5cm]{geometry}
+\usepackage[a5paper,top=2cm,bottom=2.2cm,inner=2cm,outer=2.5cm]{geometry}
 
 \usepackage{hyperref}
 \usepackage{listings}
@@ -142,6 +142,97 @@ Given the array \var{nums} after the possible rotation and an integer \var{targe
 You must write an algorithm with O(log n) runtime complexity.
 \end{problem}
 
+% -----------------------------------------------------------------------------
+
+\part{Data Structures}
+\blankpage
+
+\begin{problem}{Reverse Linked List}{code/linkedlist-reverse_linked_list.go}
+Given the \var{head} of a singly linked list, reverse the list, and return the reversed list.
+\end{problem}
+
+\begin{problem}{Linked List Cycle}{code/linkedlist-cycle.go}
+Given \var{head}, the head of a linked list, determine if the linked list has a cycle in it.
+
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the \var{next} pointer. Internally, \var{pos} is used to denote the index of the node that tail's \var{next} pointer is connected to. Note that \var{pos} is not passed as a parameter.
+
+Return \var{true} if there is a cycle in the linked list. Otherwise, return \var{false}.
+\end{problem}
+
+\begin{problem}{Container With Most Water}{code/array-container_with_most_water.go}
+You are given an integer array \var{height} of length \var{n}. There are \var{n} vertical lines drawn such that the two endpoints of the \var{i}\nth line are \var{(i, 0)} and \var{(i, height[i])}.
+
+Find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+Return the maximum amount of water a container can store.
+
+Notice that you may not slant the container.
+\end{problem}
+
+\begin{problem}{Find Minimum in Rotated Sorted Array}{code/array-find_minimum_in_rotated_sorted_array.go}
+Suppose an array of length \var{n} sorted in ascending order is rotated between \var{1} and \var{n} times. For example, the array \var{nums = [0,1,2,4,5,6,7]} might become:
+
+\begin{itemize}
+    \item \var{[4,5,6,7,0,1,2]} if it was rotated 4 times.
+    \item \var{[0,1,2,4,5,6,7]} if it was rotated 7 times.
+\end{itemize}
+
+Notice that rotating an array \var{[a[0], a[1], a[2], ..., a[n-1]]} 1 time results in the array \var{[a[n-1], a[0], a[1], a[2], ..., a[n-2]]}.
+
+Given the sorted rotated array \var{nums} of unique elements, return the minimum element of this array.
+
+You must write an algorithm that runs in O(log n) time.
+\end{problem}
+
+\begin{problem}{Longest Repeating Character Replacement}{code/string-longest_repeating_character_replacement.go}
+You are given a string \var{s} and an integer \var{k}. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most \var{k} times.
+
+Return the length of the longest substring containing the same letter you can get after performing the above operations.
+\end{problem}
+
+\begin{problem}{Longest Substring Without Repeating Characters}{code/string-longest_substring_without_repeating_characters.go}
+Given a string \var{s}, find the length of the longest substring without repeating characters.
+\end{problem}
+
+\begin{problem}{Number of Islands}{code/graph-number_of_islands.go}
+Given an \var{m * n} 2D binary grid \var{grid} which represents a map of \var{1}s (land) and \var{0}s (water), return the number of islands.
+
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+\end{problem}
+
+\begin{problem}{Remove Nth Node From End of List}{code/linkedlist-remove_nth_node_from_end_of_list.go}
+Given the \var{head} of a linked list, remove the \var{n}\nth node from the end of the list and return its head.
+\end{problem}
+
+\begin{problem}{Palindromic Substrings}{code/string-palindromic_substrings.go}
+Given a string \var{s}, return the number of palindromic substrings in it.
+
+A string is a palindrome when it reads the same backward as forward.
+
+A substring is a contiguous sequence of characters within the string.
+\end{problem}
+
+\begin{problem}{Pacific Atlantic Water Flow}{code/graph-pacific_atlantic_water_flow.go}
+There is an \var{m x n} rectangular island that borders both the Pacific Ocean and Atlantic Ocean. The Pacific Ocean touches the island's left and top edges, and the Atlantic Ocean touches the island's right and bottom edges.
+
+The island is partitioned into a grid of square cells. You are given an \var{m x n} integer matrix \var{heights} where \var{heights[r][c]} represents the height above sea level of the cell at coordinate \var{(r, c)}.
+
+The island receives a lot of rain, and the rain water can flow to neighboring cells directly north, south, east, and west if the neighboring cell's height is less than or equal to the current cell's height. Water can flow from any cell adjacent to an ocean into the ocean.
+
+Return a 2D list of grid coordinates \var{result} where \var{result[i] = [ri, ci]} denotes that rain water can flow from cell \var{(ri, ci)} to both the Pacific and Atlantic oceans.    
+\end{problem}
+
+\begin{problem}{Minimum Window Substring}{code/string-minimum_window_substring.go}
+Given two strings \var{s} and \var{t} of lengths \var{m} and \var{n} respectively, return the minimum window substring of \var{s} such that every character in \var{t} (including duplicates) is included in the window. If there is no such substring, return the empty string.
+
+The testcases will be generated such that the answer is unique.
+\end{problem}
+
+\blankpage
+
+% -----------------------------------------------------------------------------
+
 \tableofcontents
+\blankpage
 
 \end{document}
