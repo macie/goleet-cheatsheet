@@ -10,6 +10,8 @@ Use `make` (GNU or BSD):
 - `make preview` - preview booklet
 - `make booklet` - creates booklet for distribution
 - `make clean` - removes compilation artifacts
+- `make test` - run source code tests
+- `make check` - run unit tests of source code
 - `make info` - print system info (useful for debugging).
 
 ## License

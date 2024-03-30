@@ -15,8 +15,10 @@
 #
 
 TEX      = xelatex
+GO       = go
 BOOKNAME = booklet
 TEMPDIR  = /tmp/goleet
+SRCDIR   = ./code
 DESTDIR  = ./dist
 SHA256   = sha256sum -c  # for OpenBSD use: sha256 -c
 
@@ -47,8 +49,18 @@ info:
 	@echo; $(SHA256) --version || true
 	@$(TEX) -version || true
 
+.PHONY: check
+check:
+	@echo '# Static analysis' >&2
+	cd $(SRCDIR) ; $(GO) vet ./...
+
+.PHONY: test
+test:
+	@echo '# Unit tests' >&2
+	cd $(SRCDIR) ; $(GO) test ./...
+
 .PHONY: booklet
-booklet: $(TEMPDIR)/$(BOOKNAME).pdf
+booklet: check test $(TEMPDIR)/$(BOOKNAME).pdf
 	@echo '# Create distribution directory' >&2
 	mkdir -p $(DESTDIR)
 	@echo '# Copy booklet' >&2
@@ -66,7 +78,7 @@ preview: $(TEMPDIR)/$(BOOKNAME).pdf
 # DEPENDENCIES
 #
 
-$(TEMPDIR)/$(BOOKNAME).pdf: $(BOOKNAME).tex
+$(TEMPDIR)/$(BOOKNAME).pdf: $(BOOKNAME).tex $(SRCDIR)/*.go
 	@echo '# Create temporary directory' >&2
 	mkdir -p $(TEMPDIR)
 	@echo '# Compile LaTeX document' >&2
