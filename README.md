@@ -1,6 +1,8 @@
 # Leetcode in Go - Cheet Sheet
 
-Booklet with solutions for _[Blind 75 Leetcode](https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions)_.
+Booklet with Go solutions for Yangshun Tay's [updated Blind 75 Leetcode](https://www.techinterviewhandbook.org/best-practice-questions/) list.
+
+All problem descriptions are taken from [LeetCode](https://leetcode.com/).
 
 ## Development
 

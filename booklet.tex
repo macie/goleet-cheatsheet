@@ -1,8 +1,147 @@
-\documentclass{book}
+\documentclass[10pt]{report}
+
+\usepackage[a5paper,top=2cm,bottom=2.5cm,inner=2cm,outer=2.5cm]{geometry}
+
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{gray}{gray}{0.8}
+
+\frenchspacing
+
+% nth renders "th" in superscript
+\newcommand{\nth}[0]{\textsuperscript{th}\space} 
+
+% var format given parameter as a variable
+\newcommand{\var}[1]{\texttt{#1}}
+
+\newcommand\blankpage{%
+    \clearpage
+    \null
+    \thispagestyle{empty}%
+    \clearpage
+}
+
+% problem format given problem
+\NewDocumentEnvironment{problem}{mm} {%
+    \par
+    \section*{#1}%
+    \addcontentsline{toc}{section}{\protect #1}%
+    \par
+    \noindent\hspace{0.2em}\color{gray}\rule{0.4em}{0.2pt}\color{black}\hspace{\dimexpr-0.4em}% top border
+    \color{gray}\vline width 0.2pt\color{black}% left border
+    \hspace{-1.4em}% don't push quotation to right
+    \begin{minipage}[t]{\dimexpr\linewidth+4em}% minpage needed to render \vline
+    \vspace{-\lineskip}% align quotation to top border
+    \begin{quotation}%
+    \vspace{0pt}% align content to top border
+} {%
+    \end{quotation}%
+    \end{minipage}%
+    \par
+    \addvspace{-1.2pt}%
+    \noindent\hspace{0.2em}\color{gray}\rule{0.4em}{0.2pt}\color{black}\hspace{\dimexpr-0.4em}% bottom border
+    \lstinputlisting[language=Go,firstline=3,tabsize=4,columns=flexible]{#2}% Go code listing
+    \newpage
+}
+
+
+\title{Leetcode in Go\\\large{Updated Blind 75}}
+\author{\href{https://github.com/macie/goleet-cheatsheet}{github.com/macie/goleet-cheatsheet}}
+\date{\today}
 
 
 \begin{document}
+\maketitle
+\blankpage
+\addtocounter{page}{-1}%
 
-This is a booklet.
+\part{Sequences}
+\blankpage
+
+\begin{problem}{Two sum}{code/array-two_sum.go}
+Given an array of integers \var{nums} and an integer \var{target}, return indices of the two numbers such that they add up to \var{target}.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+\end{problem}
+
+\begin{problem}{Contains Duplicate}{code/array-contains_duplicate.go}
+Given an integer array \var{nums}, return \var{true} if any value appears at least twice in the array, and return \var{false} if every element is distinct.
+\end{problem}
+
+\begin{problem}{Best Time to Buy and Sell Stock}{code/array-best_time_to_buy_and_sell_stock.go}
+You are given an array \var{prices} where \var{prices[i]} is the price of a given stock on the \var{i}\nth day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return \var{0}.
+\end{problem}
+
+\begin{problem}{Valid Anagram}{code/string-valid_anagram.go}
+Given two strings \var{s} and \var{t}, return \var{true} if \var{t} is an anagram of \var{s}, and \var{false} otherwise.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+\end{problem}
+
+\begin{problem}{Valid Parentheses}{code/string-valid_parentheses.go}
+Given a string \var{s} containing just the characters \var{'('}, \var{')'}, \var{'\{'}, \var{'\}'}, \var{'['} and \var{']'}, determine if the input string is valid.
+
+An input string is valid if:
+
+\begin{itemize}
+    \item Open brackets must be closed by the same type of brackets.
+    \item Open brackets must be closed in the correct order.
+    \item Every close bracket has a corresponding open bracket of the same type.
+\end{itemize}
+\end{problem}
+
+\begin{problem}{Maximum Subarray}{code/array-maximum_subarray.go}
+Given an integer array \var{nums}, find the subarray (contiguous non-empty sequence of elements within an array) which has the largest sum and return its sum.
+\end{problem}
+
+\begin{problem}{Product of Array Except Self}{code/array-product_of_array_except_self.go}
+Given an integer array \var{nums}, return an array \var{answer} such that \var{answer[i]} is equal to the product of all the elements of \var{nums} except \var{nums[i]}.
+
+The product of any prefix or suffix of \var{nums} is guaranteed to fit in a 32-bit integer.
+
+You must write an algorithm that runs in O(n) time and without using the division operation.
+\end{problem}
+
+\begin{problem}{3Sum}{code/array-3sum.go}
+% https://arxiv.org/pdf/1404.0799.pdf
+Given an integer array \var{nums}, return all the triplets \var{[nums[i], nums[j], nums[k]]} such that \var{i != j}, \var{i != k}, and \var{j != k}, and \var{nums[i] + nums[j] + nums[k] == 0}.
+
+Notice that the solution set must not contain duplicate triplets.
+\end{problem}
+
+\begin{problem}{Merge Intervals}{code/interval-merge_intervals.go}
+Given an array of \var{intervals} where \var{intervals[i] = [start\textsubscript{i}, end\textsubscript{i}]}, merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
+\end{problem}
+
+\begin{problem}{Group Anagrams}{code/string-group_anagrams.go}
+Given an array of strings \var{strs}, group anagrams together. You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+\end{problem}
+
+\begin{problem}{Maximum Product Subarray*}{code/array-maximum_product_subarray.go}
+Given an integer array \var{nums}, find a subarray (contiguous non-empty sequence of elements within an array) that has the largest product, and return the product.
+
+The test cases are generated so that the answer will fit in a 32-bit integer.
+\end{problem}
+
+\begin{problem}{Search in Rotated Sorted Array*}{code/array-search_in_rotated_sorted_array.go}
+There is an integer array \var{nums} sorted in ascending order (with distinct values).
+
+Prior to being passed to your function, \var{nums} is possibly rotated at an unknown pivot index \var{k} (\var{1 <= k < nums.length}) such that the resulting array is \var{[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]} (0-indexed). For example, \var{[0,1,2,4,5,6,7]} might be rotated at pivot index 3 and become \var{[4,5,6,7,0,1,2]}.
+
+Given the array \var{nums} after the possible rotation and an integer \var{target}, return the index of \var{target} if it is in \var{nums}, or -1 if it is not in \var{nums}.
+
+You must write an algorithm with O(log n) runtime complexity.
+\end{problem}
+
+\tableofcontents
 
 \end{document}
