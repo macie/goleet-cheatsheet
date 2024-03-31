@@ -66,7 +66,7 @@ booklet: check test $(TEMPDIR)/$(BOOKNAME).pdf
 	@echo '# Copy booklet' >&2
 	cp $(TEMPDIR)/$(BOOKNAME).pdf $(DESTDIR)
 	@echo '# Add executable checksum to: $(DESTDIR)/$(BOOKNAME).sha256sum' >&2
-	cd $(DESTDIR); sha256sum $(BOOKNAME) >$(BOOKNAME).sha256sum
+	cd $(DESTDIR); sha256sum $(BOOKNAME).pdf >$(BOOKNAME).sha256sum
 
 .PHONY: preview
 preview: $(TEMPDIR)/$(BOOKNAME).pdf
@@ -82,5 +82,9 @@ $(TEMPDIR)/$(BOOKNAME).pdf: $(BOOKNAME).tex $(SRCDIR)/*.go
 	@echo '# Create temporary directory' >&2
 	mkdir -p $(TEMPDIR)
 	@echo '# Compile LaTeX document' >&2
+	@if [ ! -f $(TEMPDIR)/$(BOOKNAME).toc ]; then \
+		$(TEX) -interaction=nonstopmode -file-line-error -output-directory="$(TEMPDIR)" $<; \
+		echo; echo '# Create table of contents' >&2; \
+	fi
 	$(TEX) -interaction=nonstopmode -file-line-error -output-directory="$(TEMPDIR)" $<
 	@echo
