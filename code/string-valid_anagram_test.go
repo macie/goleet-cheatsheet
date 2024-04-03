@@ -18,7 +18,7 @@ func TestValidAnagram(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%v %v", tt.s, tt.t), func(t *testing.T) {
-			got := ValidAnagram(tt.s, tt.t)
+			got := validAnagram(tt.s, tt.t)
 			if got != tt.want {
 				t.Errorf("ValidAnagram(s, t) = %v, want %v", got, tt.want)
 			}

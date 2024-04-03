@@ -3,7 +3,8 @@ package main
 import "sort"
 
 func merge(intervals [][]int) [][]int {
-	if len(intervals) <= 1 {
+	size := len(intervals)
+	if size <= 1 {
 		return intervals
 	}
 
@@ -11,15 +12,14 @@ func merge(intervals [][]int) [][]int {
 		return intervals[i][0] < intervals[j][0]
 	})
 
-	merged := make([][]int, 0)
+	merged := make([][]int, 0, size)
 	merged = append(merged, intervals[0])
-	for i := 1; i < len(intervals); i++ {
-		last := len(merged) - 1
-		if merged[last][1] >= intervals[i][0] {
-			merged[last][1] = max(
-				merged[last][1], intervals[i][1])
+	for _, interval := range intervals[1:] {
+		latest := merged[len(merged)-1]
+		if interval[0] > latest[1] {
+			merged = append(merged, interval)
 		} else {
-			merged = append(merged, intervals[i])
+			latest[1] = max(interval[1], latest[1])
 		}
 	}
 

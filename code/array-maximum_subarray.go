@@ -1,18 +1,12 @@
 package main
 
 func maxSubArray(nums []int) int {
-	sum, max := nums[0], nums[0]
-	for _, num := range nums[1:] {
-		if sum < 0 {
-			sum = num
-		} else {
-			sum += num
-		}
-
-		if sum > max {
-			max = sum
-		}
+	// Kadane's algorithm
+	largestSum, sum := nums[0], nums[0]
+	for _, n := range nums[1:] {
+		sum = max(n, sum+n)
+		largestSum = max(largestSum, sum)
 	}
 
-	return max
+	return largestSum
 }

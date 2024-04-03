@@ -3,29 +3,30 @@ package main
 import "sort"
 
 func threeSum(nums []int) [][]int {
-	res := [][]int{}
+	triplets := make([][]int, 0, len(nums))
 
 	sort.Ints(nums)
-	for i, v := range nums {
-		if i > 0 && v == nums[i-1] {
+	for i, a := range nums {
+		if i > 0 && a == nums[i-1] {
 			continue
 		}
 		l, r := i+1, len(nums)-1
 		for l < r {
-			sum := v + nums[l] + nums[r]
-			if sum > 0 {
-				r--
-			} else if sum < 0 {
+			b, c := nums[l], nums[r]
+			if a+b+c < 0 {
 				l++
-			} else {
-				res = append(res, []int{v, nums[l], nums[r]})
+			} else if a+b+c == 0 {
+				triplets = append(triplets, []int{a, b, c})
 				l++
 				for nums[l] == nums[l-1] && l < r {
 					l++
 				}
+				r--
+			} else {
+				r--
 			}
 		}
 	}
 
-	return res
+	return triplets
 }

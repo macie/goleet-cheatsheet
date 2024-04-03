@@ -4,6 +4,11 @@ Booklet with Go solutions for Yangshun Tay's [updated Blind 75 Leetcode](https:/
 
 All problem descriptions are taken from [LeetCode](https://leetcode.com/).
 
+Solutions were prepared in 2 steps:
+
+1. LLM generated solution based on file and method names and description. The solution was verified on leetcode.com - all generated solutions passed the test.
+2. Solution readability was manually improved (e.g. changes in variable names, use of Go idioms).
+
 ## Development
 
 Use `make` (GNU or BSD):

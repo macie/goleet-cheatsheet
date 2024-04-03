@@ -5,20 +5,22 @@ func validParentheses(s string) bool {
 		return true
 	}
 
-	stack := make([]rune, 0)
+	stack := make([]rune, 0, len(s))
 	for _, c := range s {
-		if c == '(' {
+		switch c {
+		case '(':
 			stack = append(stack, ')')
-		} else if c == '{' {
-			stack = append(stack, '}')
-		} else if c == '[' {
+		case '[':
 			stack = append(stack, ']')
-		} else if len(stack) == 0 ||
-			stack[len(stack)-1] != c {
-			return false
-		} else {
+		case '{':
+			stack = append(stack, '}')
+		default:
+			if len(stack) == 0 || stack[len(stack)-1] != c {
+				return false
+			}
 			stack = stack[:len(stack)-1]
 		}
 	}
+
 	return len(stack) == 0
 }

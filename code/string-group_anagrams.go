@@ -3,13 +3,13 @@ package main
 import "sort"
 
 func groupAnagrams(strs []string) [][]string {
-	m := make(map[string][]string)
+	m := make(map[string][]string, len(strs))
 	for _, str := range strs {
 		sorted := sortLetters(str)
 		m[sorted] = append(m[sorted], str)
 	}
 
-	result := make([][]string, 0)
+	result := make([][]string, 0, len(strs))
 	for _, group := range m {
 		result = append(result, group)
 	}

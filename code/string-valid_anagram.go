@@ -1,8 +1,6 @@
 package main
 
-import "reflect"
-
-func ValidAnagram(s string, t string) bool {
+func validAnagram(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
 	}
@@ -11,13 +9,16 @@ func ValidAnagram(s string, t string) bool {
 		return true
 	}
 
-	sMap := make(map[string]int)
-	tMap := make(map[string]int)
-
-	for i := 0; i < len(s); i++ {
-		sMap[string(s[i])]++
-		tMap[string(t[i])]++
+	count := make(map[byte]int, len(s))
+	for i := range s {
+		count[s[i]]++
+		count[t[i]]--
+	}
+	for _, c := range count {
+		if c != 0 {
+			return false
+		}
 	}
 
-	return reflect.DeepEqual(sMap, tMap)
+	return true
 }

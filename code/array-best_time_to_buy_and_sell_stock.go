@@ -1,16 +1,15 @@
 package main
 
 func maxProfit(prices []int) int {
-	minPrice := 10000 + 1
-
-	profit := 0
-	for _, price := range prices {
-		if price < minPrice {
-			minPrice = price
-		} else if price-minPrice > profit {
-			profit = price - minPrice
+	maxProfit := 0
+	buyDay := 0
+	for today, price := range prices {
+		if price < prices[buyDay] {
+			buyDay = today
 		}
+		profit := prices[today] - prices[buyDay]
+		maxProfit = max(maxProfit, profit)
 	}
 
-	return profit
+	return maxProfit
 }

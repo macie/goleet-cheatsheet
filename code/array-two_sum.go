@@ -1,7 +1,7 @@
 package main
 
 func twoSum(nums []int, target int) []int {
-	numMap := make(map[int]int)
+	numMap := make(map[int]int, len(nums))
 
 	for i, num := range nums {
 		complement := target - num
@@ -11,5 +11,5 @@ func twoSum(nums []int, target int) []int {
 		numMap[num] = i
 	}
 
-	return []int{-1, -1}
+	return []int{}
 }
